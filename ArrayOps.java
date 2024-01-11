@@ -1,12 +1,6 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] array1 =  {19, 3, 2};
-        System.out.println("yes or no: " + isSorted(array1));
-
-        // Test case 2: Missing number is 0
-        int[] array2 =  {11, 10, 1};
-        System.out.println("yes or no: " + isSorted(array2));
-
+        
     }
     
     public static int findMissingInt (int [] array) {
@@ -29,6 +23,7 @@ public class ArrayOps {
     public static int secondMaxValue(int [] array) {
         int high = array[0];
         int secondHigh = 0;
+        int moreThanOne = 0;
         // finds the highest value
         for (int i = 1;i < array.length;i++){
             if (array[i] > high) {
@@ -45,8 +40,12 @@ public class ArrayOps {
             else if (array[i] < high && array[i] > secondHigh) {
                 secondHigh = array[i];
             }
+            // if the highest number appears more than once
+            if (array[i] == high) {
+                moreThanOne += 1;
+            }
         }
-        return secondHigh;
+        return (moreThanOne > 1) ? high : secondHigh;
     }
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
