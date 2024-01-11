@@ -1,29 +1,34 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        
+        int[] array1 =  {19, 3, 2};
+        System.out.println("yes or no: " + isSorted(array1));
+
+        // Test case 2: Missing number is 0
+        int[] array2 =  {11, 10, 1};
+        System.out.println("yes or no: " + isSorted(array2));
+
     }
     
     public static int findMissingInt (int [] array) {
-        // sort the array
-        for (int i = 0;i <= array.length; i++){
-            if (array[i] > array[i+1]) {
-                int temp = array[i];
-                array[i] = array[i+1];
-                array[i+1] = temp;
+        boolean inArr = false;
+        for (int i = 0; i < array.length; i++){
+            inArr = false;
+            for (int j = 0; j < array.length; j++){
+                 if (array[j] == i) {
+                    inArr = true;
             }
-        }
-        // compare the sorted to array to the actual numbers and return the missing number
-        for (int i = 0;i <= n;i++){
-            if (array[i] != i) {
+            }
+            if (inArr == false) {
                 return i;
             }
-        }
 
+        }
+        return 1;
         }
 
     public static int secondMaxValue(int [] array) {
         int high = array[0];
-        int secondHigh = array[0];
+        int secondHigh = 0;
         // finds the highest value
         for (int i = 1;i < array.length;i++){
             if (array[i] > high) {
@@ -31,8 +36,13 @@ public class ArrayOps {
             }
         }
         //finds the second highest value
-        for (int i = 1;i < array.length;i++){
-            if (array[i] < high && array[i] > secondHigh) {
+        for (int i = 0;i < array.length;i++){
+            // initalizing secondHigh
+            if (array[i] < high && secondHigh == 0) {
+                secondHigh = array[i];    
+            }
+            // if secondHigh is already initlized
+            else if (array[i] < high && array[i] > secondHigh) {
                 secondHigh = array[i];
             }
         }
