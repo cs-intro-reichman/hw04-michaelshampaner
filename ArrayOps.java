@@ -1,6 +1,9 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        
+        int[] array1 =  {1, 2};
+        int[] array2 = {1, 2};
+        System.out.println("yes or no: " + containsTheSameElements(array1, array2));
+
     }
     
     public static int findMissingInt (int [] array) {
@@ -49,18 +52,7 @@ public class ArrayOps {
     }
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-        for (int i = 0;i < array1.length;i++){
-            boolean inArray = false;
-            for (int j = 0;j < array2.length && !inArray;j++){
-                if (array1[i] == array2[j]) {
-                    inArray = true;
-                }
-            }
-            if (inArray == false) {
-                return false;
-            }
-        }
-        return true;
+        return isContained(array1, array2) && isContained(array2, array1);
     }
 
     public static boolean isSorted(int [] array) {
@@ -85,5 +77,22 @@ public class ArrayOps {
             }
         }
         return highToLow || lowToHigh;
+    }
+
+    public static boolean isContained(int [] array1,int [] array2) {
+        for (int i = 0;i < array1.length;i++){
+            boolean inArray = false;
+            // checks if a number from array1 is in array2
+            for (int j = 0;j < array2.length && !inArray;j++){
+                if (array1[i] == array2[j]) {
+                    inArray = true;
+                }
+            }
+            // if number from array1 is not in array2, finish
+            if (inArray == false) {
+                return false;
+            }
+        }
+        return true;
     }
 }
