@@ -22,9 +22,6 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String s = "Hello world";
-        char c = 'l';
-        System.out.println("the new string is " + allIndexOf(s, c));
     }
 
     public static String capVowelsLowRest (String string) {
@@ -32,11 +29,11 @@ public class StringOps {
         for (int i = 0; i < string.length(); i++){
             // if current char is low vowel -> change to cap
             if (isLowVowel(string.charAt(i))) {
-                outpString += (char)(string.charAt(i) + ('A' - 'a'));
+                outpString += lowToUpp(string.charAt(i));
             }
             // if current char is capital not vowel -> change to low
             else if (isCapNotVowel(string.charAt(i))) {
-                    outpString += (char)(string.charAt(i) + ('a' - 'A'));
+                    outpString += upperToLow(string.charAt(i));
             }
             else{
                 // every char beside the two cases above -> add without changes
@@ -49,15 +46,17 @@ public class StringOps {
 
     public static String camelCase (String string) {
         String outpString = "";
+        // remove all spaces before first letter
+        while (string.charAt(0) == ' ') {
+            string = string.substring(1);
+        }
         // if first char is UpperCase
-        if (string.charAt(0) != ' ') {
-            if (!isLowCase(string.charAt(0))) {
-                outpString += upperToLow(string.charAt(0));
+        if (!isLowCase(string.charAt(0))) {
+            outpString += upperToLow(string.charAt(0));
         }
-            else{
-            // its a lowCase char
-                outpString += string.charAt(0);
-        }
+        else{
+        // its a lowCase char
+            outpString += string.charAt(0);
         }
         for (int i = 1; i < string.length(); i++){
             if (string.charAt(i) != ' ') {
@@ -88,7 +87,9 @@ public class StringOps {
         int count = 0;
         int ansArrCount = 0;
         while (copy.length() > 0 && start > -1) {
+            // find the char
             start = copy.indexOf(chr);
+            // if char is appear in string -> cut the string from begining until char
             if (start > -1) {
                 copy = copy.substring(start + 1);
                 count ++;
@@ -97,6 +98,7 @@ public class StringOps {
         ansArr = new int[count];
         for (int i = 0;i < string.length();i++){
             if (string.charAt(i) == chr) {
+                // fill the new array with the values of the indexes
                 ansArr[ansArrCount] = i;
                 ansArrCount ++;
             }
