@@ -50,12 +50,14 @@ public class StringOps {
     public static String camelCase (String string) {
         String outpString = "";
         // if first char is UpperCase
-        if (!isLowCase(string.charAt(0)) && string.charAt(0) != ' ') {
-            outpString += upperToLow(string.charAt(0));
+        if (string.charAt(0) != ' ') {
+            if (!isLowCase(string.charAt(0))) {
+                outpString += upperToLow(string.charAt(0));
         }
-        else{
+            else{
             // its a lowCase char
-            outpString += string.charAt(0);
+                outpString += string.charAt(0);
+        }
         }
         for (int i = 1; i < string.length(); i++){
             if (string.charAt(i) != ' ') {
